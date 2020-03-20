@@ -23,7 +23,6 @@ class Player
     bool Check_Hand(Hand);
     int Set_Player_Id();
 
-
   private:
     bool Swap_Allowed;
     bool Amount_Of_Cards;
