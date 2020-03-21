@@ -3,15 +3,20 @@
 
 // #include <gtkmm.h>
 
-using namespace std;
-
 class Player
 {
-  public:
-    int Player;
-    int money;
+  private:
+    int PlayerID;
     Hand Player_Hand;
+    string message;
+    int money;
+    bool Swap_Allowed;
+    bool Amount_Of_Cards;
+
+  public:
     int Get_Money();
+    int Get_Message();
+    int Get_PlayerID();
     int Add_To_Money(int money);
     Hand Set_Hand(Hand);
     Hand Get_Hand(Hand);
@@ -22,10 +27,9 @@ class Player
     void Fold(Hand);
     bool Check_Hand(Hand);
     int Set_Player_Id();
-
-  private:
-    bool Swap_Allowed;
-    bool Amount_Of_Cards;
-}
+    int Amount_Of_Cards();
+    int Set_Money();
+    string Chat_Box();
+};
 
 #endif
