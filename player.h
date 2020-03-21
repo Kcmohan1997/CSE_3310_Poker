@@ -2,6 +2,9 @@
 #define __PLAYER_H
 
 // #include <gtkmm.h>
+#include "hand.h"
+#include "player.h"
+#include <iostream>
 
 class Player
 {
