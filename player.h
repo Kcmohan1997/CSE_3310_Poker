@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef __PLAYER_H
+#define __PLAYER_H
 
 // #include <gtkmm.h>
 
@@ -8,7 +8,7 @@ class Player
   private:
     int PlayerID;
     Hand Player_Hand;
-    string message;
+    std::string message;
     int money;
     bool Swap_Allowed;
     bool Amount_Of_Cards;
@@ -29,7 +29,7 @@ class Player
     int Set_Player_Id();
     int Amount_Of_Cards();
     int Set_Money();
-    string Chat_Box();
+    std::string Chat_Box();
 };
 
 #endif
