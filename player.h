@@ -14,7 +14,7 @@ class Player
     std::string message;
     int money;
     bool Swap_Allowed;
-    bool Amount_Of_Cards;
+    bool AmountOfCards;
 
   public:
     int Get_Money();
