@@ -14,7 +14,8 @@ class Mainwin : public Gtk::Window {
         void on_bet_click();   
         void on_check_click();        
         void on_fold_click();                      
-        void on_swap_click();        
+        void on_swap_click();
+        void on_leave_click();        
     private:
     	Gtk::Button* betButton;
     	Gtk::Button* checkButton;
@@ -25,5 +26,7 @@ class Mainwin : public Gtk::Window {
 	Gtk::Label* card3;
 	Gtk::Label* card4;
 	Gtk::Label* card5;
+        Gtk::Label* betAmount;
+        Gtk::Label* totalAmount;
 };
 #endif 
