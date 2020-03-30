@@ -1,6 +1,10 @@
 #include "mainwin.h"
-//#include <sstream>
-//#include <fstream>
+#include <sstream>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
 Mainwin::Mainwin()
   : betButton{Gtk::manage(new Gtk::Button{"Bet"})},
     checkButton{Gtk::manage(new Gtk::Button{"Check"})},
@@ -34,9 +38,10 @@ Mainwin::Mainwin()
     hbox0->pack_start(*playerEntry, Gtk::PACK_SHRINK, 0);
 
     // Card Display
-    // Hbox of 5 labels, labels will be changable after integratio with    dealer.
+    // Hbox of 5 labels, labels will be changable after integratio with dealer.
     Gtk::Box *hbox = Gtk::manage(new Gtk::HBox);
     vbox->pack_start(*hbox);
+    
     hbox->pack_start(*card1);
     hbox->pack_start(*card2);
     hbox->pack_start(*card3);
@@ -72,7 +77,6 @@ Mainwin::Mainwin()
     Gtk::Label *bet = Gtk::manage(new Gtk::Label{"Bet Amount"});
     grid->attach(*bet, 0, 2, 1, 1);
     grid->attach(*betAmount, 2, 2, 2, 1);
-
     hbox2->pack_start(*grid);
     Gtk::Button *leaveButton = Gtk::manage(new Gtk::Button{"Leave"});
     hbox2->pack_start(*leaveButton);
@@ -82,6 +86,7 @@ Mainwin::Mainwin()
 }
 
 Mainwin::~Mainwin() { }
+
 
 /// Callback to methods
     void Mainwin::on_bet_click() {
@@ -138,25 +143,5 @@ Mainwin::~Mainwin() { }
     void Mainwin::on_leave_click() {
     close();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
