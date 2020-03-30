@@ -1,6 +1,10 @@
 #include "mainwin.h"
-//#include <sstream>
-//#include <fstream>
+#include <sstream>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
 Mainwin::Mainwin()
   : betButton{Gtk::manage(new Gtk::Button{"Bet"})},
     checkButton{Gtk::manage(new Gtk::Button{"Check"})},
@@ -32,9 +36,10 @@ Mainwin::Mainwin()
     hbox0->pack_start(*playerEntry, Gtk::PACK_SHRINK, 0);
 
     // Card Display
-    // Hbox of 5 labels, labels will be changable after integratio with    dealer.
+    // Hbox of 5 labels, labels will be changable after integratio with dealer.
     Gtk::Box *hbox = Gtk::manage(new Gtk::HBox);
     vbox->pack_start(*hbox);
+    
     hbox->pack_start(*card1);
     hbox->pack_start(*card2);
     hbox->pack_start(*card3);
@@ -47,6 +52,10 @@ Mainwin::Mainwin()
     hbox2->pack_start(*checkButton);
     hbox2->pack_start(*foldButton);
     hbox2->pack_start(*swapButton);
+    betButton->signal_clicked().connect(sigc::mem_fun(*this,&Mainwin::on_bet_click));
+    checkButton->signal_clicked().connect(sigc::mem_fun(*this,&Mainwin::on_check_click));
+    foldButton->signal_clicked().connect(sigc::mem_fun(*this,&Mainwin::on_fold_click));
+    swapButton->signal_clicked().connect(sigc::mem_fun(*this,&Mainwin::on_swap_click));
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::VBox);
     Gtk::Label *chatBox = Gtk::manage(new Gtk::Label{"Chat Area"});
     Gtk::Label *chatField = Gtk::manage(new Gtk::Label{"Chat field"});
@@ -72,9 +81,35 @@ Mainwin::Mainwin()
     hbox2->pack_start(*grid);
     Gtk::Button *leaveButton = Gtk::manage(new Gtk::Button{"Leave"});
     hbox2->pack_start(*leaveButton);
+    leaveButton->signal_clicked().connect(sigc::mem_fun(*this,&Mainwin::on_leave_click));
 
 
     vbox->show_all();
 }
 
 Mainwin::~Mainwin() { }
+
+void Mainwin:: on_bet_click()
+{
+    cout<<"On bet clicked"<<endl;
+}
+
+void Mainwin:: on_check_click()
+{
+    cout<<"On check clicked"<<endl;
+}
+
+void Mainwin:: on_fold_click()
+{
+    cout<<"On fold clicked"<<endl;
+}
+
+void Mainwin:: on_swap_click()
+{
+    cout<<"On swap clicked"<<endl;
+}
+void Mainwin:: on_leave_click()
+{
+    cout<<"On leave clicked"<<endl;
+}
+
