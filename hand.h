@@ -3,7 +3,6 @@
 
 // #include <gtkmm.h>
 #include "hand.h"
-#include "card.h"
 #include <iostream>
 #include <string> 
 class Hand

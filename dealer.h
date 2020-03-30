@@ -1,7 +1,6 @@
 #ifndef __DEALER_H
 #define __DEALER_H
 
-#include "card.h"
 #include "dealer.h"
 #include <iostream>
 
