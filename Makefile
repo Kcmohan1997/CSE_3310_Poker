@@ -1,5 +1,5 @@
 #this is the makefile of the poker++ 
-CXXFLAGS += --std=c++17
+CXXFLAGS += --std=c++11
 GTKFLAGS = `/usr/bin/pkg-config gtkmm-3.0 --cflags --libs`
 
 debug: CXXFLAGS += -g
