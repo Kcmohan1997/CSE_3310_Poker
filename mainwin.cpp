@@ -64,6 +64,7 @@ Mainwin::Mainwin()
     hbox2->pack_start(*vbox2);
     vbox2->pack_start(*chatBox, Gtk::PACK_SHRINK, 0);
     chatBox->override_background_color(Gdk::RGBA{"gray"});
+    chatField->override_background_color(Gdk::RGBA{"white"});
     vbox2->pack_start(*chatField);
     chatField->set_hexpand(true);
     chatField->set_vexpand(true);
