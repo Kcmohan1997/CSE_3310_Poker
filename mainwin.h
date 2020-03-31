@@ -5,6 +5,7 @@
 //#include "dealer.h"
 
 const std::string APP_TITLE{"Poker ++"};
+const std::string APP_NAME{"edu.uta.cse3310.poker.v0_1_0"};
 
 class Mainwin : public Gtk::Window {
     public:
