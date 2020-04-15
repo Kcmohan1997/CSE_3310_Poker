@@ -4,6 +4,7 @@
 // #include <gtkmm.h>
 #include "hand.h"
 #include "player.h"
+#include "Dealer.h"
 #include <iostream>
 
 class Player
@@ -12,15 +13,24 @@ class Player
     int PlayerID;
     Hand Player_Hand;
     std::string message;
-    int money;
+    int money = 100;
     bool Swap_Allowed;
     bool AmountOfCards;
 
   public:
-    int Get_Money();
+    int Get_Money()
+    {
+	return money;
+    }
     int Get_Message();
-    int Get_PlayerID();
-    int Add_To_Money(int money);
+    int Get_PlayerID()
+    {
+	    return PlayerID;
+    }
+    int Add_To_Money(int money,Dealer.money_pot)
+    {
+	money += Dealer.money_pot;
+    }
     Hand Set_Hand(Hand);
     Hand Get_Hand(Hand);
     bool Check_Swap();
