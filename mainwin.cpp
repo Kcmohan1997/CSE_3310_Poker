@@ -10,6 +10,7 @@ Mainwin::Mainwin()
     checkButton{Gtk::manage(new Gtk::Button{"Check"})},
     foldButton{Gtk::manage(new Gtk::Button{"Fold"})},
     swapButton{Gtk::manage(new Gtk::Button{"Swap"})},
+    spectate{Gtk::manage(new Gtk::ToggleButton{"Spectate"})},
     card1{Gtk::manage(new Gtk::Label{"Card 1"})},
     card2{Gtk::manage(new Gtk::Label{"Card 2"})},
     card3{Gtk::manage(new Gtk::Label{"Card 3"})},
@@ -29,12 +30,13 @@ Mainwin::Mainwin()
     //Header Hbox
     Gtk::Box *hbox0 = Gtk::manage(new Gtk::HBox);
     vbox->pack_start(*hbox0, Gtk::PACK_SHRINK, 0);
-    Gtk::Button *spectate = Gtk::manage(new Gtk::Button{"Spectate"});
     hbox0->pack_start(*spectate, Gtk::PACK_SHRINK, 0);
     spectate->signal_clicked().connect([this] {this->on_spectate_click();});
+    ///*if we want an ante button
     Gtk::Button *ante = Gtk::manage(new Gtk::Button{"Ante"});
     hbox0->pack_start(*ante, Gtk::PACK_SHRINK, 0);
     ante->signal_clicked().connect([this] {this->on_ante_click();});
+    //*/
     Gtk::Label *time = Gtk::manage(new Gtk::Label{"Time"});
     hbox0->pack_start(*time, Gtk::PACK_SHRINK, 0);
     time->set_hexpand(true);
@@ -150,10 +152,16 @@ Mainwin::~Mainwin() { }
     dialog.run();
     }
     void Mainwin::on_spectate_click() {
-    betButton->set_sensitive(false);
-    swapButton->set_sensitive(false);
-    checkButton->set_sensitive(false);
-    foldButton->set_sensitive(false);		
+    //spectate->set_active(false);	
+    bool state;
+    if (spectate->get_active() == true)
+    state = false;
+    else
+    state = true;
+    betButton->set_sensitive(state); 
+    swapButton->set_sensitive(state); 
+    checkButton->set_sensitive(state); 
+    foldButton->set_sensitive(state); 	
     }
     void Mainwin::on_ante_click(){
     betButton->set_sensitive(true);
