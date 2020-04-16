@@ -29,6 +29,12 @@ Mainwin::Mainwin()
     //Header Hbox
     Gtk::Box *hbox0 = Gtk::manage(new Gtk::HBox);
     vbox->pack_start(*hbox0, Gtk::PACK_SHRINK, 0);
+    Gtk::Button *spectate = Gtk::manage(new Gtk::Button{"Spectate"});
+    hbox0->pack_start(*spectate, Gtk::PACK_SHRINK, 0);
+    spectate->signal_clicked().connect([this] {this->on_spectate_click();});
+    Gtk::Button *ante = Gtk::manage(new Gtk::Button{"Ante"});
+    hbox0->pack_start(*ante, Gtk::PACK_SHRINK, 0);
+    ante->signal_clicked().connect([this] {this->on_ante_click();});
     Gtk::Label *time = Gtk::manage(new Gtk::Label{"Time"});
     hbox0->pack_start(*time, Gtk::PACK_SHRINK, 0);
     time->set_hexpand(true);
@@ -117,6 +123,10 @@ Mainwin::~Mainwin() { }
 
      
     void Mainwin::on_fold_click() {
+    betButton->set_sensitive(false);
+    swapButton->set_sensitive(false);
+    checkButton->set_sensitive(false); 
+    foldButton->set_sensitive(false);
     }     
                 
     void Mainwin::on_swap_click() {
@@ -138,9 +148,20 @@ Mainwin::~Mainwin() { }
 
     dialog.show_all();
     dialog.run();
-    }   
-
-
+    }
+    void Mainwin::on_spectate_click() {
+    betButton->set_sensitive(false);
+    swapButton->set_sensitive(false);
+    checkButton->set_sensitive(false);
+    foldButton->set_sensitive(false);		
+    }
+    void Mainwin::on_ante_click(){
+    betButton->set_sensitive(true);
+    swapButton->set_sensitive(true);
+    checkButton->set_sensitive(true);
+    foldButton->set_sensitive(true);	
+    }
+   
     void Mainwin::on_leave_click() {
     close();
     }

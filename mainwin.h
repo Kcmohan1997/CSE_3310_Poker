@@ -16,7 +16,9 @@ class Mainwin : public Gtk::Window {
         void on_check_click();        
         void on_fold_click();                      
         void on_swap_click();
-        void on_leave_click();        
+        void on_leave_click();
+	void on_spectate_click(); 
+ 	void on_ante_click();       
     private:
     	Gtk::Button* betButton;
     	Gtk::Button* checkButton;
