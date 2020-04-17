@@ -10,7 +10,7 @@ Mainwin::Mainwin()
     checkButton{Gtk::manage(new Gtk::Button{"Check"})},
     foldButton{Gtk::manage(new Gtk::Button{"Fold"})},
     swapButton{Gtk::manage(new Gtk::Button{"Swap"})},
-    spectate{Gtk::manage(new Gtk::ToggleButton{" SPECTATE "})},
+    spectateButton{Gtk::manage(new Gtk::ToggleButton{" SPECTATE "})},
     nameEntry{Gtk::manage(new Gtk::Label{"\t\t"})},
     card1{Gtk::manage(new Gtk::Label{"Card 1"})},
     card2{Gtk::manage(new Gtk::Label{"Card 2"})},
@@ -31,8 +31,8 @@ Mainwin::Mainwin()
     //Header Hbox
     Gtk::Box *hbox0 = Gtk::manage(new Gtk::HBox);
     vbox->pack_start(*hbox0, Gtk::PACK_SHRINK, 0);
-    hbox0->pack_start(*spectate, Gtk::PACK_SHRINK, 0);
-    spectate->signal_clicked().connect([this] {this->on_spectate_click();});
+    hbox0->pack_start(*spectateButton, Gtk::PACK_SHRINK, 0);
+    spectateButton->signal_clicked().connect([this] {this->on_spectate_click();});
     ///*if we want an ante button
     playButton = Gtk::manage(new Gtk::Button{" PLAY "});
     hbox0->pack_start(*playButton, Gtk::PACK_SHRINK, 0);
@@ -157,10 +157,16 @@ Mainwin::~Mainwin() { }
     void Mainwin::on_spectate_click() {
     //spectate->set_active(false);	
     bool state;
-    if (spectate->get_active() == true)
-    state = false;
+    if (spectateButton->get_active() == true)
+    { 
+	state = false;
+    	play_button_mode = true;
+	playButton->set_sensitive(play_button_mode);
+    }
     else
-    state = true;
+    {
+    	state = true;
+    }
     betButton->set_sensitive(state); 
     swapButton->set_sensitive(state); 
     checkButton->set_sensitive(state); 
@@ -185,9 +191,10 @@ Mainwin::~Mainwin() { }
         dialog.show_all();
 	dialog.run();
         
-	nameEntry->set_text(name_Entry.get_text()+" ");
+	nameEntry->set_text(name_Entry.get_text()+"\t");
         //xxxx->set_text(ante_Entry.get_text()+" "); //will change later
         play_button_mode = false;
+        //spectateButton->set_sensitive(play_button_mode);
         playButton->set_sensitive(play_button_mode);
 	betButton->set_sensitive(true);
 	swapButton->set_sensitive(true);

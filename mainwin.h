@@ -27,7 +27,7 @@ class Mainwin : public Gtk::Window {
     	Gtk::Button* checkButton;
     	Gtk::Button* foldButton;
         Gtk::Button* swapButton;
-	Gtk::ToggleButton* spectate;
+	Gtk::ToggleButton* spectateButton;
         Gtk::Label* nameEntry;
 	Gtk::Label* card1;
 	Gtk::Label* card2;
