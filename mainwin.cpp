@@ -10,14 +10,15 @@ Mainwin::Mainwin()
     checkButton{Gtk::manage(new Gtk::Button{"Check"})},
     foldButton{Gtk::manage(new Gtk::Button{"Fold"})},
     swapButton{Gtk::manage(new Gtk::Button{"Swap"})},
-    spectate{Gtk::manage(new Gtk::ToggleButton{"Spectate"})},
+    spectate{Gtk::manage(new Gtk::ToggleButton{" SPECTATE "})},
+    nameEntry{Gtk::manage(new Gtk::Label{"\t\t"})},
     card1{Gtk::manage(new Gtk::Label{"Card 1"})},
     card2{Gtk::manage(new Gtk::Label{"Card 2"})},
     card3{Gtk::manage(new Gtk::Label{"Card 3"})},
     card4{Gtk::manage(new Gtk::Label{"Card 4"})},
     card5{Gtk::manage(new Gtk::Label{"Card 5"})},
-    betAmount{Gtk::manage(new Gtk::Label{"$ Bet Amount"})},
-    totalAmount{Gtk::manage(new Gtk::Label{"$ Total Amount"})}
+    betAmount{Gtk::manage(new Gtk::Label{"$ 0"})},
+    totalAmount{Gtk::manage(new Gtk::Label{"$ 0"})}
 {
     // Gui Setup
 
@@ -33,17 +34,17 @@ Mainwin::Mainwin()
     hbox0->pack_start(*spectate, Gtk::PACK_SHRINK, 0);
     spectate->signal_clicked().connect([this] {this->on_spectate_click();});
     ///*if we want an ante button
-    Gtk::Button *ante = Gtk::manage(new Gtk::Button{"Ante"});
-    hbox0->pack_start(*ante, Gtk::PACK_SHRINK, 0);
-    ante->signal_clicked().connect([this] {this->on_ante_click();});
+    playButton = Gtk::manage(new Gtk::Button{" PLAY "});
+    hbox0->pack_start(*playButton, Gtk::PACK_SHRINK, 0);
+    playButton->signal_clicked().connect([this] {this->on_play_click();});
     //*/
     Gtk::Label *time = Gtk::manage(new Gtk::Label{"Time"});
     hbox0->pack_start(*time, Gtk::PACK_SHRINK, 0);
     time->set_hexpand(true);
-    Gtk::Label *playerName = Gtk::manage(new Gtk::Label{"Player Name"});
-    Gtk::Entry *playerEntry = Gtk::manage(new Gtk::Entry);
+    Gtk::Label *playerName = Gtk::manage(new Gtk::Label{"Player Name: "});
+   
     hbox0->pack_start(*playerName, Gtk::PACK_SHRINK, 0);
-    hbox0->pack_start(*playerEntry, Gtk::PACK_SHRINK, 0);
+    hbox0->pack_start(*nameEntry, Gtk::PACK_SHRINK, 0);
 
     // Card Display
     // Hbox of 5 labels, labels will be changable after integratio with dealer.
@@ -83,7 +84,7 @@ Mainwin::Mainwin()
     Gtk::Label *total = Gtk::manage(new Gtk::Label{"Total"});
     grid->attach(*total, 0, 1, 1, 1);
     grid->attach(*totalAmount, 2, 1, 2, 1);
-    Gtk::Label *bet = Gtk::manage(new Gtk::Label{"Bet Amount"});
+    Gtk::Label *bet = Gtk::manage(new Gtk::Label{"\tBet Amount"});
     grid->attach(*bet, 0, 2, 1, 1);
     grid->attach(*betAmount, 2, 2, 2, 1);
     hbox2->pack_start(*grid);
@@ -151,6 +152,8 @@ Mainwin::~Mainwin() { }
     dialog.show_all();
     dialog.run();
     }
+
+
     void Mainwin::on_spectate_click() {
     //spectate->set_active(false);	
     bool state;
@@ -163,15 +166,35 @@ Mainwin::~Mainwin() { }
     checkButton->set_sensitive(state); 
     foldButton->set_sensitive(state); 	
     }
-    void Mainwin::on_ante_click(){
-    betButton->set_sensitive(true);
-    swapButton->set_sensitive(true);
-    checkButton->set_sensitive(true);
-    foldButton->set_sensitive(true);	
+
+    void Mainwin::on_play_click(){
+
+        Gtk::Dialog dialog{"Player Info",*this};
+	Gtk::Grid grid;
+	Gtk::Label message1{"Enter Name"};
+        Gtk::Entry name_Entry;
+        Gtk::Label message2{"Enter Ante $"};
+        Gtk::Entry ante_Entry;
+        grid.attach(message1, 0, 0, 1, 1);
+        grid.attach(name_Entry, 1, 0, 2, 1);
+	grid.attach(message2, 0, 1, 1, 1);
+        grid.attach(ante_Entry, 1, 1, 2, 1);
+        dialog.get_content_area()->add(grid);
+	dialog.add_button("Enter",0);
+
+        dialog.show_all();
+	dialog.run();
+        
+	nameEntry->set_text(name_Entry.get_text()+" ");
+        //xxxx->set_text(ante_Entry.get_text()+" "); //will change later
+        play_button_mode = false;
+        playButton->set_sensitive(play_button_mode);
+	betButton->set_sensitive(true);
+	swapButton->set_sensitive(true);
+	checkButton->set_sensitive(true);
+	foldButton->set_sensitive(true);	
     }
    
     void Mainwin::on_leave_click() {
     close();
     }
-
-

@@ -12,19 +12,23 @@ class Mainwin : public Gtk::Window {
         Mainwin();
         virtual ~Mainwin();
     protected:
+	void on_spectate_click(); 
+ 	void on_play_click();
         void on_bet_click();   
         void on_check_click();        
         void on_fold_click();                      
         void on_swap_click();
         void on_leave_click();
-	void on_spectate_click(); 
- 	void on_ante_click();       
+	       
     private:
+	Gtk::Button* playButton;
+	
     	Gtk::Button* betButton;
     	Gtk::Button* checkButton;
     	Gtk::Button* foldButton;
         Gtk::Button* swapButton;
 	Gtk::ToggleButton* spectate;
+        Gtk::Label* nameEntry;
 	Gtk::Label* card1;
 	Gtk::Label* card2;
 	Gtk::Label* card3;
@@ -32,5 +36,6 @@ class Mainwin : public Gtk::Window {
 	Gtk::Label* card5;
         Gtk::Label* betAmount;
         Gtk::Label* totalAmount;
+        bool play_button_mode = true;
 };
 #endif 
