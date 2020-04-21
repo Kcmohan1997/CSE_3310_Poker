@@ -153,7 +153,7 @@ Mainwin::Mainwin()
 {
 	set_default_size(800, 600);
 	set_title(APP_TITLE);
-
+	//override_background_color(Gdk::RGBA("green"));
 	// Put a vertical box container as the Window contents
 	Gtk::Box* vbox = Gtk::manage(new Gtk::VBox);
 	add(*vbox);
@@ -249,37 +249,33 @@ void Mainwin::on_bet_click() {
 
 	dialog.show_all();
 	dialog.run();
-	check_bet_entry(e_name.get_text());
-}
-
-void Mainwin::check_bet_entry(std::string e_name)
-{
-	if(stoi(e_name)==0)
-	{
-		show_message_dialog4();
-		on_bet_click();
+	if(!e_name.get_text().empty())
+	{		
+		if (std::stoi(e_name.get_text())==0)
+		{
+			show_message_dialog4();
+			on_bet_click();
+		}
+		else
+		{
+			betAmount->set_text("$" + e_name.get_text());
+			//message to the server
+			std::string text;
+			//char line[chat_message::max_body_length + 1];
+			chat_message msg;
+			nlohmann::json j;
+			j["action"] = "bet";
+			j["amount"] = std::stoi(e_name.get_text());
+			text = j.dump();
+			char x[text.size() + 1];
+			std::strcpy(x, text.c_str());
+			msg.body_length(std::strlen(x));
+			std::memcpy(msg.body(), x, msg.body_length());
+			msg.encode_header();
+			assert(c);  // this is a global class
+			c->write(msg);	
+		}
 	}
-
-	else
-	{
-		betAmount->set_text("$" + e_name);
-
-		//message to the server
-		std::string text;
-		//char line[chat_message::max_body_length + 1];
-		chat_message msg;
-		nlohmann::json j;
-		j["action"] = "bet";
-		j["amount"] = std::stoi(e_name);
-		text = j.dump();
-		char x[text.size() + 1];
-		std::strcpy(x, text.c_str());
-		msg.body_length(std::strlen(x));
-		std::memcpy(msg.body(), x, msg.body_length());
-		msg.encode_header();
-		assert(c);  // this is a global class
-		c->write(msg);	
-	}		
 }
 
 void Mainwin::on_check_click() {
@@ -562,7 +558,4 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-
-
-
 
