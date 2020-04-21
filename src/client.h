@@ -20,7 +20,6 @@ class Mainwin : public Gtk::Window {
         void on_swap_click();
         void on_leave_click();
 	void check_player_mode_entry(std::string,std::string);
-	void check_bet_entry(std::string);
 	void show_message_dialog1();
 	void show_message_dialog2();
 	void show_message_dialog3();
