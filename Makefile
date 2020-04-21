@@ -1,7 +1,7 @@
-# this is an example makefile
+# makefile of poker++
 
 
-all: asio-1.12.2 src/chat_server src/client
+all: asio-1.12.2 src/chat_server src/client src/json
 
 asio-1.12.2:
 	tar xzf asio-1.12.2.tar.gz
@@ -19,5 +19,5 @@ src/client: src/client.cpp
 clean:
 	-rm -rf asio-1.12.2
 	-rm -f src/client
-	-rm -f src/chat_server		
-
+	-rm -f src/chat_server	
+	-rm -f src/json
