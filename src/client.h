@@ -2,6 +2,7 @@
 #define __CLIENT_H
 
 #include <gtkmm.h>
+#include <vector>
 
 const std::string APP_TITLE{"Poker ++"};
 const std::string APP_NAME{"edu.uta.cse3310.poker.v0_1_0"};
@@ -18,10 +19,15 @@ class Mainwin : public Gtk::Window {
         void on_fold_click();                      
         void on_swap_click();
         void on_leave_click();
+	void check_player_mode_entry(std::string,std::string);
+	void check_bet_entry(std::string);
+	void show_message_dialog1();
+	void show_message_dialog2();
+	void show_message_dialog3();
+	void show_message_dialog4();
 	       
     private:
 	Gtk::Button* playButton;
-	
     	Gtk::Button* betButton;
     	Gtk::Button* checkButton;
     	Gtk::Button* foldButton;
@@ -36,5 +42,9 @@ class Mainwin : public Gtk::Window {
         Gtk::Label* betAmount;
         Gtk::Label* totalAmount;
         bool play_button_mode = true;
+	bool button_state = false;
+	int total_amount = 500;
+	int bet_amount = 0;
+	std::vector <std::string> poker_card;
 };
 #endif 
