@@ -281,15 +281,25 @@ Mainwin::~Mainwin() { }
                 
     void Mainwin::on_swap_click() {
     Gtk::Dialog dialog{"Swap Decision", *this};
+    dialog.set_default_size(300, 100);
 
     Gtk::Grid grid;
-
-    Gtk::Label l_name{"Which Cards do you wish to swap"};
-    Gtk::Label directions{"Please type numbers corresponding to cards with spaces in between, or type 'all'"};
-    Gtk::Entry e_name;
-    grid.attach(l_name, 0, 0, 1, 1);
-    grid.attach(directions, 0, 1, 2, 1);
-    grid.attach(e_name, 0, 2, 2, 1);
+    Gtk::CheckButton swap1{"1"};
+    Gtk::CheckButton swap2{"2"};
+    Gtk::CheckButton swap3{"3"};
+    Gtk::CheckButton swap4{"4"};
+    Gtk::CheckButton swap5{"5"};
+    grid.attach(swap1, 0, 0, 1, 1);
+    grid.attach(swap2, 1, 0, 1, 1);
+    grid.attach(swap3, 2, 0, 1, 1);
+    grid.attach(swap4, 3, 0, 1, 1);
+    grid.attach(swap5, 4, 0, 1, 1);
+/*
+    if (swap1.get_active())
+    {
+        card1->set_text(swap1.get_label());
+    }
+*/
 
     dialog.get_content_area()->add(grid);
 
@@ -298,6 +308,26 @@ Mainwin::~Mainwin() { }
 
     dialog.show_all();
     dialog.run();
+    if (swap1.get_active())
+    {
+        card1->set_text(swap1.get_label());
+    }
+    if (swap2.get_active())
+    {
+        card2->set_text(swap2.get_label());
+    }
+    if (swap3.get_active())
+    {
+        card3->set_text(swap3.get_label());
+    }
+    if (swap4.get_active())
+    {
+        card4->set_text(swap4.get_label());
+    }
+    if (swap5.get_active())
+    {
+        card5->set_text(swap5.get_label());
+    }
     }
 
 
