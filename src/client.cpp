@@ -151,7 +151,7 @@ Mainwin::Mainwin()
 	betAmount{ Gtk::manage(new Gtk::Label{"$ 0"}) },
 	totalAmount{ Gtk::manage(new Gtk::Label{"$ 0"}) }
 {
-	set_default_size(800, 600);
+	set_default_size(600,400);
 	set_title(APP_TITLE);
 	//override_background_color(Gdk::RGBA("green"));
 	// Put a vertical box container as the Window contents
@@ -526,10 +526,6 @@ void Mainwin::show_message_dialog4()
 }
 
 int main(int argc, char* argv[]) {
-	/*auto app = Gtk::Application::create(argc, argv, APP_NAME);
-	Mainwin win;
-	return app->run(win);*/
-
 	if (argc != 3)
 	{
 		std::cerr << "Usage: chat_client <host> <port>\n";
