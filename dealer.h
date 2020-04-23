@@ -15,7 +15,7 @@ class Dealer{
     int get_numPlayer(std::vector<std::string> player);
     bool Check_num_player(std::vector<std::string> player);
     std::string Deal_cards(std::string deck[]);
-    bool betting_round_Check();
+    bool betting_round_Check(std::vector<std::string> player);
     int add_money_pot(int betting_amount);
     bool has_player_bet();
     bool has_player_check();

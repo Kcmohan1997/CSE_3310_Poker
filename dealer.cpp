@@ -63,15 +63,19 @@ std::string Dealer::Deal_cards(std::string deck[]) //Index up the deck until it 
     }
     return deck[deck_index++];
 }
-/*
-bool Dealer::betting_round_Check();
-{
 
+bool Dealer::betting_round_Check(std::vector<std::string> player)
+{
+    if (betting_round_counter = get_numPlayer(player))
+    return true;
+    else return false;
+    betting_round_counter = 0; /// reset counter for next round
 }
-*/
+
 int Dealer::add_money_pot(int betting_amount)
     {
 	money_pot += betting_amount;
+        betting_round_counter++;
         return money_pot;		
     }
 /*
