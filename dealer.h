@@ -11,15 +11,15 @@ class Dealer{
   public:
     void Shuffle(std::string card[], int n); 
     void Swap_Cards(std::vector<std::string> hand, std::vector<int> swaps, std::string deck[]);
-    bool Ante_paid(std::vector<std::string> player);
+    bool Ante_paid(std::vector<int> ante, std::vector<std::string> player);
     int get_numPlayer(std::vector<std::string> player);
     bool Check_num_player(std::vector<std::string> player);
     std::string Deal_cards(std::string deck[]);
     bool betting_round_Check();
     int add_money_pot(int betting_amount);
     bool has_player_bet();
-    bool see_player_check();
-    std::string print();
+    bool has_player_check();
+    std::vector<std::string> getHand(std::string deck[]);
   private:
     int money_pot=0;
     int ante;
