@@ -88,8 +88,9 @@ bool Dealer::has_player_check();
 
 }
 */
-int main(int argc, char* argv[]) {
 /*
+int main(int argc, char* argv[]) {
+
 Testing prints.
 
 Dealer dealer;
@@ -104,7 +105,8 @@ std::string Deck[52] = {"Ace of Spades", "Two of Spades", "Three of Spades", "Fo
  std::vector<std::string> Deck4 = dealer.getHand(Deck);
     for(int i=0; i < Deck4.size(); i++)
       std::cout << Deck4.at(i) << std::endl;
-*/
+
     return 0;
 }
+*/
 
