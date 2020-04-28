@@ -1,3 +1,0 @@
-this is the code to compile
-
-g++ -Wno-format -o Client\ gui.glade -Wno-deprecated-declRtions -Wno-format-security -lm `pkg-config --libs --cflags gtk+-3.0` -export-dynamic
