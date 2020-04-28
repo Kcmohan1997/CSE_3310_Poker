@@ -152,7 +152,7 @@ void Mainwin::set_total_amount_after_win(int amount)
 ///function to create message dialog box when player joins
 void Mainwin::show_message_dialog1()
 {
-	Gtk::MessageDialog dialog1(*this, "Welcome to POKER++\nYou're starting with $500 credits.\n Default Ante: $2", false, Gtk::MESSAGE_INFO);
+	Gtk::MessageDialog dialog1(*this, "Welcome to POKER++\nYou're starting with $100 credits.\n Default Ante: $2", false, Gtk::MESSAGE_INFO);
 	dialog1.run();
 }
 
