@@ -3,9 +3,9 @@
 ## To compile do following in terminal
 
 ```
-make
-./src/chat_server 8000
-./src/client 127.0.0.1 8000
+1. -make
+2. ./src/chat_server 8000
+3. ./src/client 127.0.0.1 8000
 ```
 
 #### Code compiles without any error but if code is crashed, try to compile is again and it works fine
